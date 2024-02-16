@@ -11,5 +11,24 @@ new Vue({
         editingTask: null,
         editedTask: { title: '', description: '', deadline: '' } // Объект для временного хранения отредактированных данных
     },
-    methods: {}
+    methods: {
+
+
+
+        addTask(column) {
+            if (this.newTaskTitle.trim() === '') return;
+            const task = {
+                title: this.newTaskTitle,
+                description: this.newTaskDescription,
+                created: new Date().toLocaleString(),
+                deadline: this.newTaskDeadline,
+                lastEdited: new Date().toLocaleString()
+            };
+            if (column === 'planned') {
+                this.plannedTasks.push(task);
+            }
+            this.clearForm();
+        },
+
+    }
 });
