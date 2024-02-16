@@ -22,7 +22,26 @@ new Vue({
             };
         },
 
+        saveEditedTask() {
+            let task;
+            if (this.editingTask !== null) {
+                if (this.editingTask < this.plannedTasks.length) {
+                    task = this.plannedTasks[this.editingTask];
+                } else if (this.editingTask < this.plannedTasks.length + this.inProgressTasks.length) {
+                    task = this.inProgressTasks[this.editingTask - this.plannedTasks.length];
+                } else if (this.editingTask < this.plannedTasks.length + this.inProgressTasks.length + this.testingTasks.length) {
+                    task = this.testingTasks[this.editingTask - this.plannedTasks.length - this.inProgressTasks.length];
+                } else {
+                    task = this.completedTasks[this.editingTask - this.plannedTasks.length - this.inProgressTasks.length - this.testingTasks.length];
+                }
 
+                task.title = this.editedTask.title;
+                task.description = this.editedTask.description;
+                task.deadline = this.editedTask.deadline;
+                task.lastEdited = new Date().toLocaleString();
+            }
+            this.editingTask = null;
+        },
 
         cancelEditTask() {
             this.editingTask = null;
