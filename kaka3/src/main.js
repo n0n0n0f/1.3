@@ -23,6 +23,11 @@ new Vue({
         },
 
 
+
+        cancelEditTask() {
+            this.editingTask = null;
+        },
+
         addTask(column) {
             if (this.newTaskTitle.trim() === '') return;
             const task = {
