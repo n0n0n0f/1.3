@@ -71,6 +71,8 @@
                 <button @click="editTaskForm(index)">Редактировать</button>
                 <button @click="deleteTask('testing', index)">Удалить</button>
                 <button @click="moveTask(task)">Передать в выполненные</button>
+                <button @click="removeTask(task)" :disabled="!task.returnReason">Передать в работу</button>
+                <input type="text" v-model="task.returnReason" placeholder="Причина возврата">
             </div>
         </div>
     </div>
