@@ -24,7 +24,23 @@
         </div>
     </div>
 
-
+    <div v-if="editingTask !== null" class="edit-form">
+        <h2>Редактирование задачи</h2>
+        <div class="form-group">
+            <label for="editTaskTitle">Название:</label>
+            <input type="text" id="editTaskTitle" v-model="editedTask.title">
+        </div>
+        <div class="form-group">
+            <label for="editTaskDescription">Описание:</label>
+            <textarea id="editTaskDescription" v-model="editedTask.description"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="editTaskDeadline">Дедлайн:</label>
+            <input type="text" id="editTaskDeadline" v-model="editedTask.deadline" disabled>
+        </div>
+        <button @click="saveEditedTask">Сохранить</button>
+        <button @click="cancelEditTask">Отмена</button>
+    </div>
 
     <div class="column" id="column2">
         <h2>Задачи в работе</h2>
