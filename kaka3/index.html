@@ -86,10 +86,9 @@
                 <p v-if="task.deadlineNoPassed">Статус: Просроченная</p>
                 <p v-else>Статус: Выполненная в срок</p>
 
-                .n, [17.02.2024 0:06]
                 <p>Последнее редактирование: {{ task.lastEdited }}</p>
                 <button @click="deleteTask('completed', index)">Удалить</button>
-                <button @click="removeTask(task)">Передать в тестирование</button>
+<!--                <button @click="removeTask(task)">Передать в тестирование</button>-->
             </div>
         </div>
     </div>
