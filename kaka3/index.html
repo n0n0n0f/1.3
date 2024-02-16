@@ -1,3 +1,4 @@
+.n, [17.02.2024 0:06]
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,6 +25,7 @@
         </div>
     </div>
 
+    <!-- Форма редактирования задачи -->
     <div v-if="editingTask !== null" class="edit-form">
         <h2>Редактирование задачи</h2>
         <div class="form-group">
@@ -44,15 +46,51 @@
 
     <div class="column" id="column2">
         <h2>Задачи в работе</h2>
-
+        <div v-for="(task, index) in inProgressTasks" :key="task.created">
+            <div class="task-card">
+                <h3>{{ task.title }}</h3>
+                <p>{{ task.description }}</p>
+                <p>Дата создания: {{ task.created }}</p>
+                <p>Дедлайн: {{ task.deadline }}</p>
+                <p>Последнее редактирование: {{ task.lastEdited }}</p>
+                <button @click="editTaskForm(index)">Редактировать</button>
+                <button @click="deleteTask('inProgress', index)">Удалить</button>
+                <button @click="moveTask(task)">Передать в тестирование</button>
+            </div>
+        </div>
     </div>
     <div class="column" id="column3">
         <h2>Тестирование</h2>
-
+        <div v-for="(task, index) in testingTasks" :key="task.created">
+            <div class="task-card">
+                <h3>{{ task.title }}</h3>
+                <p>{{ task.description }}</p>
+                <p>Дата создания: {{ task.created }}</p>
+                <p>Дедлайн: {{ task.deadline }}</p>
+                <p>Последнее редактирование: {{ task.lastEdited }}</p>
+                <button @click="editTaskForm(index)">Редактировать</button>
+                <button @click="deleteTask('testing', index)">Удалить</button>
+                <button @click="moveTask(task)">Передать в выполненные</button>
+            </div>
+        </div>
     </div>
     <div class="column" id="column4">
         <h2>Выполненные</h2>
+        <div v-for="(task, index) in completedTasks" :key="task.created">
+            <div class="task-card" :class="{ overdue: task.deadlineNoPassed }">
+                <h3>{{ task.title }}</h3>
+                <p>{{ task.description }}</p>
+                <p>Дата создания: {{ task.created }}</p>
+                <p>Дедлайн: {{ task.deadline }}</p>
+                <p v-if="task.deadlineNoPassed">Статус: Просроченная</p>
+                <p v-else>Статус: Выполненная в срок</p>
 
+                .n, [17.02.2024 0:06]
+                <p>Последнее редактирование: {{ task.lastEdited }}</p>
+                <button @click="deleteTask('completed', index)">Удалить</button>
+                <button @click="removeTask(task)">Передать в тестирование</button>
+            </div>
+        </div>
     </div>
     <div class="form-group">
         <label for="taskTitle">Заголовок:</label>
