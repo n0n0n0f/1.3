@@ -1,4 +1,3 @@
-.n, [17.02.2024 0:06]
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -49,6 +48,7 @@
         <div v-for="(task, index) in inProgressTasks" :key="task.created">
             <div class="task-card">
                 <h3>{{ task.title }}</h3>
+                <p v-if="task.returnReason">Причина возврата: {{ task.returnReason }}</p>
                 <p>{{ task.description }}</p>
                 <p>Дата создания: {{ task.created }}</p>
                 <p>Дедлайн: {{ task.deadline }}</p>
