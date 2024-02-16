@@ -17,6 +17,9 @@
                 <p>Дата создания: {{ task.created }}</p>
                 <p>Дедлайн: {{ task.deadline }}</p>
                 <p>Последнее редактирование: {{ task.lastEdited }}</p>
+                <button @click="editTaskForm(index)">Редактировать</button>
+                <button @click="deleteTask('planned', index)">Удалить</button>
+                <button @click="moveTask(task)">В работу</button>
             </div>
         </div>
     </div>
