@@ -17,14 +17,13 @@
                 <p>Дата создания: {{ task.created }}</p>
                 <p>Дедлайн: {{ task.deadline }}</p>
                 <p>Последнее редактирование: {{ task.lastEdited }}</p>
-                <button @click="editTaskForm(index)">Редактировать</button>
+                <button @click="editTaskForm('planned', index)">Редактировать</button>
                 <button @click="deleteTask('planned', index)">Удалить</button>
                 <button @click="moveTask(task)">В работу</button>
             </div>
         </div>
     </div>
 
-    <!-- Форма редактирования задачи -->
     <div v-if="editingTask !== null" class="edit-form">
         <h2>Редактирование задачи</h2>
         <div class="form-group">
@@ -37,7 +36,7 @@
         </div>
         <div class="form-group">
             <label for="editTaskDeadline">Дедлайн:</label>
-            <input type="text" id="editTaskDeadline" v-model="editedTask.deadline" disabled>
+            <input type="date" id="editTaskDeadline" v-model="editedTask.deadline">
         </div>
         <button @click="saveEditedTask">Сохранить</button>
         <button @click="cancelEditTask">Отмена</button>
@@ -53,7 +52,7 @@
                 <p>Дата создания: {{ task.created }}</p>
                 <p>Дедлайн: {{ task.deadline }}</p>
                 <p>Последнее редактирование: {{ task.lastEdited }}</p>
-                <button @click="editTaskForm(index)">Редактировать</button>
+                <button @click="editTaskForm('inProgress', index)">Редактировать</button>
                 <button @click="deleteTask('inProgress', index)">Удалить</button>
                 <button @click="moveTask(task)">Передать в тестирование</button>
             </div>
