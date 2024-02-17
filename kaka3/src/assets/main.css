@@ -15,6 +15,10 @@
 .task-card.overdue {
   border: 2px solid red;
 }
+.columns{
+  display: flex;
+  justify-content: space-evenly;
+}
 
 .task-card {
   background-color: #f4f4f4;
