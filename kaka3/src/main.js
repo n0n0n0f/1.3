@@ -145,27 +145,38 @@ new Vue({
             const task2 = this.testingTasks[index];
             const task3 = this.completedTasks[index];
 
-            this.moveTask(task, column);
-            this.moveTask(task1, column);
-            this.moveTask(task2, column);
-            this.moveTask(task3, column);
+            // Проверяем, что карточка не перемещается в текущий столбец
+            if (column !== 'planned') {
+                this.moveTask(task, column);
+            }
+            if (column !== 'inProgress') {
+                this.moveTask(task1, column);
+            }
+            if (column !== 'testing') {
+                this.moveTask(task2, column);
+            }
+            if (column !== 'completed') {
+                this.moveTask(task3, column);
+            }},
 
+        onDragStart(task, index) {
+            this.isDragging = true;
+            event.dataTransfer.setData('text/plain', index);
+            event.dataTransfer.effectAllowed = 'move';
+
+            // Добавление класса dragging к элементу, который перетаскиваем
+            event.target.classList.add('dragging');
         },
         onDragEnd() {
             this.isDragging = false;
-        },
-        onCardClick() {
+
+            // Удаление класса dragging у всех элементов .task-card
             const cards = document.querySelectorAll('.task-card');
             cards.forEach(card => {
-                card.addEventListener('mousedown', () => {
-                    card.classList.add('clicked');
-                });
-                card.addEventListener('mouseup', () => {
-                    card.classList.remove('clicked');
-                });
+                card.classList.remove('dragging');
             });
         },
-    }
 
+    }
 });
 

@@ -3,13 +3,14 @@
   vertical-align: top;
   margin: 10px;
   padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  border: 1px solid black;
+  border-radius: 10px ;
 }
 
 .edit-form{
   margin-bottom: 20px;
 }
+
 
 .task-card.overdue {
   border: 2px solid red;
@@ -19,8 +20,11 @@
   background-color: #f4f4f4;
   padding: 10px;
   margin: 10px 0;
-  border-radius: 5px;
+  border-radius: 5px ;
   transition: opacity 0.3s ease;
+  position: relative;
+  border: 1px solid black;
+  animation: border-color-animation 0.5s linear forwards;
 }
 
 .task-card.fade-enter-active, .task-card.fade-leave-active {
@@ -29,12 +33,62 @@
 
 .task-card.fade-enter, .task-card.fade-leave-to {
   opacity: 0;
+  0% {
+    box-shadow: 0 0 10px rgba(0, 224, 255, 0.5); /* Начальный эффект границ */
+  }
+  100% {
+    box-shadow: 0 0 50px rgba(127, 39, 255, 0.5); /* Конечный эффект границ */
+  }
 }
 
-.task-card-dragging {
+.task-card.dragging {
   animation: border-glow 0.5s infinite alternate;
 }
 
 .task-card.clicked {
-  animation: border-ripple 0.5s infinite alternate;
+  animation: border-ripple 1s infinite alternate;
 }
+
+@keyframes border-glow {
+  0% {
+    box-shadow: 0 0 10px rgba(0, 224, 255, 0.5);
+  }
+  100% {
+    box-shadow: 0 0 50px rgba(127, 39, 255, 0.5);
+  }
+}
+.dragging {
+  animation: border-glow 0.5s infinite alternate;
+}
+.task-card.dragging {
+  animation: border-glow 0.5s infinite alternate;
+}
+
+.task-card-wrapper {
+  transition: transform 0.3s ease;
+}
+
+.task-card-wrapper.enter-active, .task-card-wrapper.leave-active {
+  transition: transform 0.3s ease;
+}
+
+.task-card-wrapper.enter, .task-card-wrapper.leave-to {
+  transform: translateY(0);
+}
+
+.task-card-wrapper.fade-enter-active, .task-card-wrapper.fade-leave-active {
+  transition: opacity 0.3s ease;
+}
+
+.task-card-wrapper.fade-enter, .task-card-wrapper.fade-leave-to {
+  opacity: 0;
+}
+
+.task-card-wrapper.fade-enter-active, .task-card-wrapper.fade-leave-active {
+  transition: opacity 0.3s ease;
+}
+
+.task-card-wrapper.fade-enter, .task-card-wrapper.fade-leave-to {
+  opacity: 0;
+}
+

@@ -9,7 +9,7 @@
 <body>
 <div id="app" class="app">
     <div>
-    <div class="column" id="column1" @dragover="onDragOver" @drop="onDrop('planned')">
+    <div class="column" id="column1" @dragover="onDragOver">
         <h2>Запланированные задачи</h2>
         <transition-group name="fade">
             <div v-for="(task, index) in plannedTasks" :key="task.created" class="task-card-wrapper">
