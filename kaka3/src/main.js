@@ -128,6 +128,44 @@ new Vue({
             this.newTaskTitle = '';
             this.newTaskDescription = '';
             this.newTaskDeadline = '';
-        }
+        },
+        onDragStart(task, index) {
+            this.isDragging = true;
+            event.dataTransfer.setData('text/plain', index);
+            event.dataTransfer.effectAllowed = 'move';
+        },
+        onDragOver(event) {
+            event.preventDefault();
+        },
+        onDrop(column) {
+            event.preventDefault();
+            const index = event.dataTransfer.getData('text/plain');
+            const task = this.plannedTasks[index];
+            const task1 = this.inProgressTasks[index];
+            const task2 = this.testingTasks[index];
+            const task3 = this.completedTasks[index];
+
+            this.moveTask(task, column);
+            this.moveTask(task1, column);
+            this.moveTask(task2, column);
+            this.moveTask(task3, column);
+
+        },
+        onDragEnd() {
+            this.isDragging = false;
+        },
+        onCardClick() {
+            const cards = document.querySelectorAll('.task-card');
+            cards.forEach(card => {
+                card.addEventListener('mousedown', () => {
+                    card.classList.add('clicked');
+                });
+                card.addEventListener('mouseup', () => {
+                    card.classList.remove('clicked');
+                });
+            });
+        },
     }
+
 });
+

@@ -6,12 +6,6 @@
   border: 1px solid #ccc;
   border-radius: 5px;
 }
-.task-card {
-  background-color: #f4f4f4;
-  padding: 10px;
-  margin: 10px 0;
-  border-radius: 5px;
-}
 
 .edit-form{
   margin-bottom: 20px;
@@ -19,4 +13,28 @@
 
 .task-card.overdue {
   border: 2px solid red;
+}
+
+.task-card {
+  background-color: #f4f4f4;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 5px;
+  transition: opacity 0.3s ease;
+}
+
+.task-card.fade-enter-active, .task-card.fade-leave-active {
+  transition: opacity 0.3s ease;
+}
+
+.task-card.fade-enter, .task-card.fade-leave-to {
+  opacity: 0;
+}
+
+.task-card-dragging {
+  animation: border-glow 0.5s infinite alternate;
+}
+
+.task-card.clicked {
+  animation: border-ripple 0.5s infinite alternate;
 }
